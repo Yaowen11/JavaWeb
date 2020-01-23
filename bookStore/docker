@@ -1,0 +1,5 @@
+docker network create web
+docker run --name web -d -p 8080:8080 -e TZ="Asia/Shanghai" -v g:/Java/tomcat-9.0.30/webapps:/usr/local/tomcat/webapps -v g:/Java/tomcat-9.0.30/logs:/usr/local/tomcat/logs -v g:/Java/tomcat-9.0.30/conf:/usr/local/tomcat/conf -v g:/Java/Java:/code --net web tomcat:9.0.30-jdk11
+alias cjsp="cp /code/JavaWeb/bookStore/target/classes/*.* /usr/local/tomcat/webapps/jsp/"
+alias css="cp -r /code/JavaWeb/bookStore/target/classes/book/* /usr/local/tomcat/webapps/jsp/WEB-INF/classes/book/"
+docker run --name mysql8 -d -p 3306:3306 -e TZ="Asia/Shanghai" -e MYSQL_ROOT_PASSWORD=secret --net web mysql:8.0.19
