@@ -1,23 +1,24 @@
 package book.store;
 
+import javax.naming.Context;
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
+import javax.naming.*;
 
 /**
  * @author z
  */
 public class BookDatabase {
 
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    private DataSource dataSource = null;
 
+    public BookDatabase () throws Exception {
+        Context context = new InitialContext();
+        dataSource = (DataSource) context.lookup("java:comp/env/jdbc/bookDB");
+    }
     public Connection getConnection() throws Exception {
-        return DriverManager.getConnection("jdbc:mysql://mysql8:3306/web?user=root&password=secret");
+        return dataSource.getConnection();
     }
 
     public void closeConnection(Connection connection){
