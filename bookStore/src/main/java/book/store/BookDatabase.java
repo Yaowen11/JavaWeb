@@ -122,17 +122,17 @@ public class BookDatabase {
     }
 
     private void buyBook(String bookId, int quantity, Connection connection) throws Exception {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("select * from books where ID = ?")) {
-            preparedStatement.setString(1, bookId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    preparedStatement.clearBatch();
-                    preparedStatement.executeUpdate("update books set sale_amount = sale_amount + ? where id = ?");
-                    preparedStatement.setInt(1, quantity);
-                    preparedStatement.setString(2, bookId);
-                    preparedStatement.execute();
-                }
-            }
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from books where ID = ?");
+        preparedStatement.setString(1, bookId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            preparedStatement.close();
+            preparedStatement = connection.prepareStatement("update books set sale_amount = sale_amount + ? where id = ?");
+            preparedStatement.setInt(1, quantity);
+            preparedStatement.setString(2, bookId);
+            preparedStatement.executeUpdate();
         }
+        closeResultSet(resultSet);
+        closePrepStmt(preparedStatement);
     }
 }
