@@ -1,0 +1,2 @@
+cp /code/JavaWeb/db-jsp/target/classes/*.* /usr/local/tomcat/webapps/ch8/
+cp -r /code/JavaWeb/db-jsp/target/classes/session/* /usr/local/tomcat/webapps/ch8/WEB-INF/classes/session/

@@ -1,11 +1,13 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="session.web.User,session.web.OnlineUsers,java.util.*" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
 <html>
 <head>
     <title>mail check jsp</title>
 </head>
 <body>
 <%
+    request.setCharacterEncoding(String.valueOf(StandardCharsets.UTF_8));
     String name = request.getParameter("username");
     if (name != null) {
         session.setAttribute("user", new User(name));
