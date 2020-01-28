@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="common.jsp"%>
-<%@ page import="java.util.*"%>
 
 <jsp:useBean id="cart" scope="session" class="book.store.ShoppingCart"/>
 

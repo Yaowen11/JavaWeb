@@ -24,6 +24,7 @@ public class BookDetails implements Comparable<Object> {
         public Builder(String bookId) {
             this.bookId = bookId;
         }
+
         public Builder title(String title) {
             this.title = title;
             return this;
@@ -73,28 +74,56 @@ public class BookDetails implements Comparable<Object> {
         return bookId;
     }
 
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {
         return author;
     }
 
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public float getPrice() {
         return price;
     }
 
-    public int getSaleAmount() {
-        return saleAmount;
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public int getOnline() {
+        return online;
+    }
+
+    public void setOnline(int online) {
+        this.online = online;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public int getOnline() {
-        return online;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getSaleAmount() {
+        return saleAmount;
+    }
+
+    public void setSaleAmount(int saleAmount) {
+        this.saleAmount = saleAmount;
     }
 
     @Override

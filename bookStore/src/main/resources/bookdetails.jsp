@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="common.jsp" %>
-<%@ page import="java.util.*" %>
-
 <html>
 <head>
     <title>book details</title>
@@ -15,7 +13,6 @@
     }
     BookDetails bookDetails = bookDB.getBookDetails(bookId);
 %>
-
 <%
     if (bookDetails == null) {
 %>
@@ -32,7 +29,6 @@
 <p>book price: <%=bookDetails.getPrice()%></p>
 <p>book sale amount: <%=bookDetails.getSaleAmount()%></p>
 <p>book description: <%=bookDetails.getDescription()%></p>
-
 <p>
     <strong>
         <a href="<%=request.getContextPath()%>/catalog.jsp?Add=<%=bookId%>">加入购物车</a>
