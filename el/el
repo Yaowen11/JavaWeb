@@ -1,0 +1,6 @@
+cp /code/JavaWeb/el/target/classes/*.jsp /usr/local/tomcat/webapps/el/
+cp /code/JavaWeb/el/target/classes/*.html /usr/local/tomcat/webapps/el/
+cp /code/JavaWeb/el/target/classes/*.xml /usr/local/tomcat/webapps/el/WEB-INF/
+cp /code/JavaWeb/el/target/classes/*.tld /usr/local/tomcat/webapps/el/WEB-INF/
+cp /code/JavaWeb/el/target/classes/*.properties /usr/local/tomcat/webapps/el/WEB-INF/
+cp -r /code/JavaWeb/el/target/classes/web/* /usr/local/tomcat/webapps/el/WEB-INF/classes/web/
