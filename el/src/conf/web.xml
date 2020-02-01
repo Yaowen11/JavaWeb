@@ -9,11 +9,11 @@
     <jsp-config>
         <taglib>
             <taglib-uri>/mytaglib</taglib-uri>
-            <taglib-location>/WEB-INF/mytaglib.tld</taglib-location>
+            <taglib-location>/mytaglib.tld</taglib-location>
         </taglib>
         <taglib>
             <taglib-uri>/maytag</taglib-uri>
-            <taglib-location>/WEB-INF/maytag.tld</taglib-location>
+            <taglib-location>/maytag.tld</taglib-location>
         </taglib>
     </jsp-config>
 

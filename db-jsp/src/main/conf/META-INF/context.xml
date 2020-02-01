@@ -1,0 +1,26 @@
+<Context reloadable="true">
+    <Resource name="jdbc/bookDB" auth="Container" type="javax.sql.DataSource"
+              maxActive="6" maxIdle="3" maxWait="-1"
+              username="root" password="secret"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://mysql8:3306/web"/>
+	<Manager className="org.apache.catalina.session.PersistentManager"
+			 saveOnRestart="true"
+			 maxActiveSessions="1200"
+			 minIdleSwap="1800"
+			 maxIdleSwap="3600"
+			 maxIdleBackup="3600">
+		<Store className="org.apache.catalina.session.JDBCStore"
+			   driverName="com.mysql.cj.jdbc.Driver"
+			   connectionName="root"
+			   connectionPassword="secret"
+			   connectionURL="jdbc:mysql://mysql8:3306/web"
+			   sessionTable="tomcat_sessions"
+			   sessionIdCol="session_id"
+			   sessionDataCol="session_data"
+			   sessionValidCol="valid_session"
+			   sessionMaxInactiveCol="max_inactive"
+			   sessionLastAccessedCol="last_access"
+			   sessionAppCol="app_name"/>
+	</Manager>
+</Context>
