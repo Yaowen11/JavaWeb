@@ -45,4 +45,28 @@
             <rtexprvalue>false</rtexprvalue>
         </attribute>
     </tag>
+
+    <tag>
+        <name>hello</name>
+        <tag-class>web.el.HelloTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+
+    <tag>
+        <name>welcome</name>
+        <tag-class>web.el.WelcomeTag</tag-class>
+        <body-content>tagdependent</body-content>
+        <attribute>
+            <name>username</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>max</name>
+        <tag-class>web.el.MaxTag</tag-class>
+        <body-content>empty</body-content>
+        <dynamic-attributes>true</dynamic-attributes>
+    </tag>
 </taglib>
