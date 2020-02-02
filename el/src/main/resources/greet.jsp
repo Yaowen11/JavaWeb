@@ -20,9 +20,16 @@
     String username = request.getParameter("username");
     StringBuffer buffer = new StringBuffer();
     for (int i = 0; i < count; i++) {
-        buffer.append("<font size='"+(size++)+"'>"+"\r\n");
-        buffer.append("Hi," + username + "<br>" + "\r\n");
-        buffer.append("</font>"+"\r\n");
+        buffer.append("<font size='")
+                .append(size++)
+                .append("'>")
+                .append("\r\n")
+                .append("Hi,")
+                .append(username)
+                .append("<br>")
+                .append("\r\n")
+                .append("</font>")
+                .append("\r\n");
     }
     System.out.println(buffer);
     if ("Monster".equals(username)) {
@@ -31,7 +38,7 @@
 <%
     } else {
 %>
-<%=buffer%>
+<%=buffer.toString()%>
 <%
     }
 %>
