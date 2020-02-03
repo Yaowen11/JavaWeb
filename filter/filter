@@ -1,0 +1,3 @@
+cp /code/JavaWeb/filter/target/classes/*.jsp /usr/local/tomcat/webapps/filter/
+cp /code/JavaWeb/filter/target/classes/web.xml /usr/local/tomcat/webapps/filter/WEB-INF/
+cp -r /code/JavaWeb/filter/target/classes/web/* /usr/local/tomcat/webapps/filter/WEB-INF/classes/web/
