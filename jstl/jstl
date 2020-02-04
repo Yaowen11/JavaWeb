@@ -1,6 +1,9 @@
 cp /code/JavaWeb/jstl/target/classes/*.jsp /usr/local/tomcat/webapps/jstl/
 cp /code/JavaWeb/jstl/target/classes/*.html /usr/local/tomcat/webapps/jstl/
+cp /code/JavaWeb/jstl/src/main/resources/*.vm /usr/local/tomcat/webapps/jstl/vm/
 cp /code/JavaWeb/jstl/target/classes/web.xml /usr/local/tomcat/webapps/jstl/WEB-INF/
+cp /code/JavaWeb/jstl/target/classes/log4j2.xml /usr/local/tomcat/webapps/jstl/WEB-INF/
 cp /code/JavaWeb/jstl/target/classes/context.xml /usr/local/tomcat/webapps/jstl/META-INF/
 cp /code/JavaWeb/jstl/target/classes/*.properties /usr/local/tomcat/webapps/jstl/WEB-INF/classes/
 cp -r /code/JavaWeb/jstl/target/classes/web/* /usr/local/tomcat/webapps/jstl/WEB-INF/classes/web/
+mv /usr/local/tomcat/webapps/jstl/WEB-INF/classes/velocity.properties /usr/local/tomcat/webapps/jstl/WEB-INF/

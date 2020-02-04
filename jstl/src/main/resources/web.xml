@@ -14,8 +14,12 @@
     </resource-ref>
 
     <!-- The Usual Welcome File List -->
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>/WEB-INF/log4j2.xml</param-value>
+    </context-param>
 </web-app>
