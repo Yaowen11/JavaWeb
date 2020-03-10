@@ -1,0 +1,22 @@
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/shop
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: secret
+    schema-username: root
+    schema-password: secret
+    data-username: root
+    data-password: secret
+    platform: mysql
+    schema:
+      - classpath:schema.sql
+    data:
+      - classpath:data.sql
+    continue-on-error: true
+    initialization-mode: always
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none

@@ -1,7 +1,4 @@
-drop database if not exists b2b2c;
-create database b2b2c;
-
-create table depots
+create table if not exists depot
 (
     id          int unsigned auto_increment primary key,
     title       varchar(255)      not null,
@@ -9,7 +6,7 @@ create table depots
     province    varchar(255)      not null,
     city        varchar(255)      not null,
     area        varchar(255)      not null,
-    category    tinyint not default 0 comment '0 综合 1 生鲜 2 食品 3 电器',
+    category    tinyint default 0 comment '0 综合 1 生鲜 2 食品 3 电器',
     address     varchar(255)      not null,
     description varchar(255)      null,
     zip_code    char(6)           not null,
@@ -18,7 +15,7 @@ create table depots
     updated_at  timestamp          null
 );
 
-create table products
+create table if not exists product
 (
     id          bigint unsigned auto_increment primary key,
     title       varchar(255)             not null,
@@ -28,12 +25,11 @@ create table products
     sold_count  int unsigned default '0' null comment '销量',
     category    tinyint not null,
     price       decimal(10, 2)           null,
-    created_at  timestamp                 null,
-    updated_at  timestamp                 null,
-    column_10   int                      null
+    created_at  timestamp                null,
+    updated_at  timestamp                null
 );
 
-create table products_skus
+create table if not exists products_sku
 (
     id          bigint unsigned auto_increment primary key,
     title       varchar(255)    not null,
@@ -45,10 +41,10 @@ create table products_skus
     depot_id    int unsigned    null comment '仓库 id',
     created_at  timestamp        null,
     updated_at  timestamp        null,
-    constraint sku_map_id foreign key (product_id) references products (id)
+    constraint sku_map_id foreign key (product_id) references product (id)
 );
 
-create table store
+create table if not exists store
 (
     id           int unsigned auto_increment primary key,
     name         varchar(255)      not null,
@@ -58,7 +54,7 @@ create table store
     state        tinyint default 0 null comment '0 正常 1 异常'
 );
 
-create table users
+create table if not exists user
 (
     id         bigint unsigned auto_increment primary key,
     name       varchar(64)       not null,
@@ -72,7 +68,7 @@ create table users
     updated_at timestamp          null
 );
 
-create table user_favorites
+create table if not exists user_favorite
 (
     id bigint unsigned primary key auto_increment,
     user_id        bigint unsigned not null,
@@ -82,10 +78,10 @@ create table user_favorites
     constraint user_map_favorites foreign key (user_id) references user (id)
 );
 
-create table user_addresses
+create table if not exists user_address
 (
     id bigint primary key auto_increment,
-    user_id bigint unsigned,
+    user_id bigint unsigned not null,
     country varchar(255) default '中国',
     province varchar(255) not null,
     city varchar(255) not null,
@@ -95,16 +91,18 @@ create table user_addresses
     created_at timestamp,
     updated_at timestamp,
     CONSTRAINT user_map_address FOREIGN KEY (user_id) REFERENCES user (id)
-)
+);
 
-create table admins(
+create table if not exists admin
+(
     id int unsigned primary key auto_increment,
     name varchar(64) not null,
     level tinyint default 0 not null,
-    office not null,
+    phone char(11) not null,
+    office varchar(64) not null,
     company_id int unsigned not null,
     parent_id int unsigned not null,
     role_id int unsigned not null,
     created_at timestamp,
     updated_at timestamp
-)
+);

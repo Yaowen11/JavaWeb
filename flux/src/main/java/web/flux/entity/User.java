@@ -16,6 +16,7 @@ import java.util.Date;
 @Data
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     @NotNull(message = "用户名不能为空")
