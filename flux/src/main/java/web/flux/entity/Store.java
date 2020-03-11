@@ -3,7 +3,6 @@ package web.flux.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.sql.Timestamp;
 
 /**
@@ -11,17 +10,20 @@ import java.sql.Timestamp;
  */
 @Entity
 @Data
-public class UserFavorite {
+public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Integer id;
 
     @Column
-    private BigInteger userId;
+    private String name;
 
     @Column
-    private BigInteger productSkuId;
+    private String companyName;
+
+    @Column
+    private Integer state;
 
     @Column
     private Timestamp createdAt;

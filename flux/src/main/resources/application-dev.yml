@@ -24,6 +24,10 @@ spring:
     hibernate:
       ddl-auto: none
 
+  data:
+    rest:
+      base-path: /api
+
 logging:
   level: {root: warn, web.flux: debug}
 

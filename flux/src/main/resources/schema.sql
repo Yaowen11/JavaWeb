@@ -10,7 +10,7 @@ create table if not exists depot
     address     varchar(255)      not null,
     description varchar(255)      null,
     zip_code    char(6)           not null,
-    used_at     timestamp          null,
+    used_at     date          null,
     state       tinyint default 0 null comment '0 正常 1 关闭',
     updated_at  timestamp          null
 );
@@ -29,7 +29,7 @@ create table if not exists product
     updated_at  timestamp                null
 );
 
-create table if not exists products_sku
+create table if not exists product_sku
 (
     id          bigint unsigned auto_increment primary key,
     title       varchar(255)    not null,
@@ -51,7 +51,9 @@ create table if not exists store
     company_name varchar(255)      not null,
     is_self      tinyint default 0 null comment '0 自营 1 非自营',
     address      varchar(255)      null,
-    state        tinyint default 0 null comment '0 正常 1 异常'
+    state        tinyint default 0 null comment '0 正常 1 异常',
+    created_at   timestamp  null,
+    updated_at   timestamp
 );
 
 create table if not exists user
@@ -74,7 +76,7 @@ create table if not exists user_favorite
     user_id        bigint unsigned not null,
     product_sku_id bigint unsigned not null,
     created_at     timestamp        null,
-    is_deleted     timestamp        null,
+    deleted_at     timestamp        null,
     constraint user_map_favorites foreign key (user_id) references user (id)
 );
 

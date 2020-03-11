@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Data
-public class Product {
+public class ProductSku {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,23 +25,23 @@ public class Product {
     private String description;
 
     @Column
-    private String image;
-
-    @Column
-    private Integer onSale;
-
-    @Column Integer soldCount;
-
-    @Column
-    private Integer category;
+    private Integer stock;
 
     @Column
     private BigDecimal price;
+
+    @Column
+    private Integer storeId;
+
+    @Column
+    private BigInteger productId;
+
+    @Column
+    private Integer depotId;
 
     @Column
     private Timestamp createdAt;
 
     @Column
     private Timestamp updatedAt;
-
 }

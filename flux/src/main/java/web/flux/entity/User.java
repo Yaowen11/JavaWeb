@@ -10,6 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,9 +23,10 @@ import java.util.Date;
 @Entity
 @Data
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private BigInteger id;
 
     @Column
     @NotNull(message = "用户名不能为空")
@@ -36,7 +39,8 @@ public class User implements UserDetails {
 
     @Column
     @NotNull(message = "请指定性别")
-    private Byte gender;
+    @Size(min = 1, max = 2)
+    private Integer gender;
 
     @Column
     @NotNull
@@ -48,7 +52,7 @@ public class User implements UserDetails {
     private String phone;
 
     @Column
-    private byte state;
+    private Integer state;
 
     @Column(unique = true)
     @Email
