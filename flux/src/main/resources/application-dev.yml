@@ -28,6 +28,8 @@ spring:
     rest:
       base-path: /api
 
+
+
 logging:
   level: {root: warn, web.flux: debug}
 

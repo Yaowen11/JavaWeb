@@ -1,16 +1,18 @@
 package web.flux.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import web.flux.config.JsonViewInterface;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -26,42 +28,50 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
     private BigInteger id;
 
     @Column
     @NotNull(message = "用户名不能为空")
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
     private String name;
 
     @Column
     @NotNull(message = "密码不能为空")
-    @JsonIgnore
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
     private String password;
 
     @Column
     @NotNull(message = "请指定性别")
-    @Size(min = 1, max = 2)
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
     private Integer gender;
 
     @Column
     @NotNull
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
     private Date birthday;
 
     @Column(unique = true)
     @NotNull
     @Pattern(regexp = "^1[3456789]\\d{9}$", message = "手机号格式错误")
+    @JsonView(JsonViewInterface.Video.All.class)
     private String phone;
 
     @Column
+    @JsonView(JsonViewInterface.Video.All.class)
     private Integer state;
 
     @Column(unique = true)
     @Email
+    @JsonView(JsonViewInterface.Video.All.class)
     private String email;
 
     @Column
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
     private Timestamp createdAt;
 
     @Column
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
     private Timestamp updatedAt;
 
     @Override
@@ -93,4 +103,5 @@ public class User implements UserDetails {
     public String getUsername() {
         return name;
     }
+
 }

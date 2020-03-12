@@ -1,17 +1,19 @@
 package web.flux.api;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import web.flux.config.JsonViewInterface;
 import web.flux.entity.User;
 import web.flux.repository.UserRepository;
-
 import java.math.BigInteger;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author z
@@ -29,24 +31,32 @@ public class UserController {
     }
 
     @GetMapping
-    public Flux<User> index() {
-        return Flux.fromIterable(userRepository.findAll()).take(10);
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
+    public List<User> index(@RequestParam int page, @RequestParam int size) {
+        return userRepository.findAll().subList((page - 1) * 10, (page - 1) * 10 + size);
     }
 
     @PostMapping(value = "/store", consumes = {"application/json"})
-    public Mono<User> store(@RequestBody User user) {
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
+    public User store(@RequestBody User user) {
+        log.debug(String.valueOf(user));
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        return Mono.just(userRepository.save(user));
+        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @PutMapping
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
     public User replace(@RequestBody User user) {
         return userRepository.save(user);
     }
 
     @GetMapping("/{id}")
-    public Mono<User> show(@PathVariable BigInteger id) {
-        return Mono.just(userRepository.findById(id).get());
+    @JsonView(JsonViewInterface.Video.ViewHot.class)
+    public ResponseEntity<User> show(@PathVariable BigInteger id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
