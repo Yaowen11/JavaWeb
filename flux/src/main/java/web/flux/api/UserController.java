@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import web.flux.config.JsonViewInterface;
+import web.flux.entity.JsonData;
 import web.flux.entity.User;
 import web.flux.repository.UserRepository;
 import java.math.BigInteger;
@@ -37,6 +39,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/store", consumes = {"application/json"})
+    @ResponseStatus(HttpStatus.CREATED)
     @JsonView(JsonViewInterface.Video.ViewHot.class)
     public User store(@RequestBody User user) {
         log.debug(String.valueOf(user));
@@ -62,11 +65,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy(@PathVariable BigInteger id) {
-        try {
-            userRepository.deleteById(id);
-        } catch (EmptyResultDataAccessException ignore) {
-
-        }
+        userRepository.deleteById(id);
     }
 
 }

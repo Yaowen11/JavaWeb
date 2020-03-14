@@ -1,4 +1,4 @@
-package web.flux.config;
+package web.flux.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ import javax.sql.DataSource;
  */
 @Component
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfigService extends WebSecurityConfigurerAdapter {
 
 //    private DataSource dataSource;
 //

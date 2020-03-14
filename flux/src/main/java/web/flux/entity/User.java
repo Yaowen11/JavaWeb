@@ -1,9 +1,11 @@
 package web.flux.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +26,7 @@ import java.util.Date;
  */
 @Entity
 @Data
+@EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails {
 
     @Id
@@ -68,10 +71,14 @@ public class User implements UserDetails {
 
     @Column
     @JsonView(JsonViewInterface.Video.ViewHot.class)
+    @CreatedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd H:i:s")
     private Timestamp createdAt;
 
     @Column
     @JsonView(JsonViewInterface.Video.ViewHot.class)
+    @LastModifiedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd H:i:s")
     private Timestamp updatedAt;
 
     @Override

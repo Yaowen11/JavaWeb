@@ -108,3 +108,16 @@ create table if not exists admin
     created_at timestamp,
     updated_at timestamp
 );
+
+create table if not exists access_log
+(
+    id bigint unsigned primary key auto_increment,
+    uri varchar(255),
+    client_ip int unsigned not null,
+    type tinyint not null comment '0 api access 1 other',
+    method char(7),
+    http_code int default 0,
+    use_time int unsigned comment 'mills seconds',
+    errors text,
+    record_at timestamp
+)

@@ -28,7 +28,9 @@ spring:
     rest:
       base-path: /api
 
-
+  rabbitmq:
+    username: admin
+    password: secret
 
 logging:
   level: {root: warn, web.flux: debug}
