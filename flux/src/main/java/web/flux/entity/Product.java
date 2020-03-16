@@ -1,6 +1,7 @@
 package web.flux.entity;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -39,9 +40,11 @@ public class Product {
     private BigDecimal price;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd H:i:s")
     private Timestamp createdAt;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd H:i:s")
     private Timestamp updatedAt;
 
 }
