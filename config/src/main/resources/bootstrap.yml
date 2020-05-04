@@ -1,0 +1,6 @@
+encrypt:
+  key-store:
+    alias: configkey
+    location: classpath:/config.jks
+    password: secret
+    secret: secret
